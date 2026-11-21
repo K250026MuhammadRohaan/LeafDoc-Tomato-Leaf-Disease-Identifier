@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Files that are re-created when the program runs
+data/processed/features_table.csv
+data/processed/leafdoc_model.joblib
+outputs/history/*
+!outputs/history/.gitkeep
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

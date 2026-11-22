@@ -1,7 +1,6 @@
 # ======================================================================
 # analysis.py
 # LeafDoc - small Pandas analysis helpers (filter, group, summary).
-# Also shows list, tuple, dict, set and map/filter (Lab 03, 04, 08).
 # ======================================================================
 
 from image_processor import FEATURE_NAMES

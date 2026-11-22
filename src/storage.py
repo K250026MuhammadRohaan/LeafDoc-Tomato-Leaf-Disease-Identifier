@@ -1,8 +1,6 @@
 # ======================================================================
 # storage.py
 # LeafDoc - saves the history of diagnoses as CSV or JSON.
-# ResultsStore is an abstract class; the two child classes override its
-# methods (inheritance + polymorphism) - Lab 05 and 06.
 # ======================================================================
 
 import csv

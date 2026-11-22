@@ -1,7 +1,6 @@
 # ======================================================================
 # api_client.py
 # LeafDoc - gets a short disease description from the Wikipedia API.
-# If there is no internet, it uses a saved copy (cache), then built-in text.
 # ======================================================================
 
 import json

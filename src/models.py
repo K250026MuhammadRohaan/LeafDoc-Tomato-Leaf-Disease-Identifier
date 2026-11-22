@@ -1,6 +1,6 @@
 # ======================================================================
 # models.py
-# LeafDoc - KNN model: train, test, compare K values, predict (Lab 10-11).
+# LeafDoc - KNN model: train, test, compare K values, predict.
 # ======================================================================
 
 import joblib

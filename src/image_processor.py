@@ -1,7 +1,6 @@
 # ======================================================================
 # image_processor.py
 # LeafDoc - loads a leaf photo, prepares it and measures its colours.
-# Uses NumPy only (no loops over pixels) - Lab 07 + Track B (images).
 # ======================================================================
 
 import os

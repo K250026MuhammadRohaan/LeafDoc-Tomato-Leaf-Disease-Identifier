@@ -1,7 +1,6 @@
 # ======================================================================
 # config.py
 # LeafDoc - all the settings in ONE place (paths, sizes, K values).
-# If you need to change a folder path, change it here only.
 # ======================================================================
 
 import os

@@ -1,7 +1,6 @@
 # ======================================================================
 # data_loader.py
 # LeafDoc - finds the dataset images and builds the cleaned Pandas table.
-# (Lab 03 set/list, Lab 04 map/lambda, Lab 08 Pandas)
 # ======================================================================
 
 import os

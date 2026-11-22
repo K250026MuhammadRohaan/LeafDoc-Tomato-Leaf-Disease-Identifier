@@ -29,102 +29,83 @@ Every result is saved to a history file (CSV or JSON). The program is meant as a
 
 ```
 LeafDoc/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
-│   ├── raw/                 PlantVillage dataset goes here (not pushed to GitHub)
-│   └── processed/           saved table, saved model, Wikipedia cache (created automatically)
-├── outputs/
-│   ├── figures/             the three PNG charts
-│   └── history/             diagnosis history (CSV / JSON)
-└── src/
-    ├── config.py            all paths and settings
-    ├── exceptions.py        InvalidImageError
-    ├── image_processor.py   ImageProcessor
-    ├── data_loader.py       DatasetManager
-    ├── analysis.py          Pandas analysis helpers
-    ├── charts.py            ChartMaker
-    ├── models.py            DiseaseClassifier
-    ├── api_client.py        DiseaseInfoClient
-    ├── storage.py           ResultsStore, CsvResultsStore, JsonResultsStore
-    └── main.py              console menu
+---- README.md
+---- requirements.txt
+---- .gitignore
+---- data/
+|   --- raw/                 PlantVillage leaf images
+|   --- processed/           saved table, saved model, Wikipedia cache (created automatically)
+---- outputs/
+|   --- figures/             the three PNG charts
+|   --- history/             diagnosis history (CSV / JSON)
+---- src/
+    --- config.py            all paths and settings
+    --- exceptions.py        InvalidImageError
+    --- image_processor.py   ImageProcessor
+    --- data_loader.py       DatasetManager
+    --- analysis.py          Pandas analysis helpers
+    --- charts.py            ChartMaker
+    --- models.py            DiseaseClassifier
+    --- api_client.py        DiseaseInfoClient
+    --- storage.py           ResultsStore, CsvResultsStore, JsonResultsStore
+    --- main.py              console menu
 ```
 
 ## Requirements
 
-- Windows with PowerShell (Mac / Linux commands are given in brackets)
+- Windows with PowerShell
 - Python 3.12 from python.org (3.10 to 3.13 also work). Very new versions (3.14) and MSYS2 / MinGW builds of Python may fail to install the libraries.
 - Internet connection for the library installation (and for Wikipedia text; the program also works offline)
 
-## Setup (done once)
+## Project Setup
 
-**Step 1: Install Python 3.12**
+**Step 1: Clone from Github**
 
-Download it from python.org and tick "Add python.exe to PATH" in the installer.
-Alternatively, run `py install 3.12` in PowerShell.
-
-**Step 2: Get the dataset**
-
-Download PlantVillage from Kaggle: https://www.kaggle.com/datasets/emmarex/plantdisease
-
-Extract it into `data/raw/`. These four folders must exist somewhere inside it (other plant folders are ignored):
+Open Windows Powershell and type the following commands:
 
 ```
-Tomato_healthy
-Tomato_Early_blight
-Tomato_Late_blight
-Tomato_Leaf_Mold
+git clone https://github.com/K250026MuhammadRohaan/LeafDoc-Tomato-Leaf-Disease-Identifier        
+
+cd LeafDoc-Tomato-Leaf-Disease-Identifier 
 ```
+ 
 
-All images can stay in the folders. The program picks up to 950 images per class by itself (`MAX_PER_CLASS` in `src/config.py`).
+**Step 2: Setup Virtual environment (Python 3.12)**
 
-If the dataset is stored somewhere else, change `DATA_DIR` in `src/config.py`, for example:
-
-```python
-DATA_DIR = r"D:\Datasets\PlantVillage"
-```
-
-**Step 3: Open PowerShell in the project folder**
+Next, open VS Code, and open the terminal, and type the follwing commands in:
 
 ```
-cd "C:\path\to\LeafDoc"
+py -3.12 -m venv .venv           
+
+.\.venv\Scripts\Activate.ps1 
 ```
+ 
 
-**Step 4: Create the virtual environment**
+**Step 3: Install required libraries**
 
-```
-py -3.12 -m venv .venv
-```
-
-Check with `dir .venv`: a folder named `Scripts` should be there.
-
-**Step 5: Activate it**
+Next, type the following line, in the VS Code terminal:
 
 ```
-.\.venv\Scripts\Activate.ps1
+pip install --default-timeout=100 --retries 10 -r requirements.txt    
 ```
+ 
 
-The `(.venv)` mark should appear at the start of the line. If PowerShell says that running scripts is disabled, run `Set-ExecutionPolicy -Scope Process Bypass` and activate again.
-[Mac / Linux: `python3 -m venv .venv` and `source .venv/bin/activate`]
+**Step 4: Run the Program** 
 
-**Step 6: Install the libraries**
-
-```
-pip install --default-timeout=100 --retries 10 -r requirements.txt
-```
-
-If the download times out, run the same command again. Files that were already downloaded are reused.
-
-## Running the program (every time)
+Finally, type the following line in the VS Code terminal, to run the program:
 
 ```
-cd "C:\path\to\LeafDoc"
+python src\main.py         
+```
+
+## Running the program (every time after setup)
+
+Open the downloaded github folder in VS Code, then open terminal there, and type the following code in there:
+
+```
 .\.venv\Scripts\Activate.ps1
 python src\main.py
 ```
-
-[Mac / Linux: `source .venv/bin/activate` and `python3 src/main.py`]
 
 ## Menu options
 
@@ -152,17 +133,6 @@ The first run measures around 3800 images and takes a few minutes. The measured 
 | `outputs/history/history.csv` or `history.json` | saved diagnoses |
 | `data/processed/disease_info_cache.json` | saved Wikipedia descriptions (offline use) |
 
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| `.venv\Scripts\activate` is not recognized | Use `.\.venv\Scripts\Activate.ps1` (the `.\` at the start is required in PowerShell) |
-| Running scripts is disabled | Run `Set-ExecutionPolicy -Scope Process Bypass`, then activate again |
-| `No matching distribution found for numpy` | The Python version is unsupported. Install Python 3.12 and recreate `.venv` |
-| `ReadTimeoutError` during install | Slow internet. Run the install command again |
-| `Dataset folder not found` or `No tomato folders` | Check that the four Tomato folders are inside `data/raw/`, or fix `DATA_DIR` in `src/config.py` |
-| Old results after changing the dataset or settings | Delete `data/processed/features_table.csv` and `data/processed/leafdoc_model.joblib` |
-
 ## Error handling
 
 The program shows a message and continues (no crash) in these cases:
@@ -183,16 +153,7 @@ The program shows a message and continues (no crash) in these cases:
 
 ## Data sources
 
-- PlantVillage dataset (Hughes and Salathe, 2015), Kaggle copy linked above.
-- Wikipedia REST API (text under CC BY-SA 4.0): https://en.wikipedia.org/api/rest_v1/page/summary/
-
-## Git workflow
-
-```
-git pull
-git add .
-git commit -m "short message about the change"
-git push
-```
-
-Pull before starting work, and edit only the files of the own part to avoid merge conflicts.
+- PlantVillage tomato leaf images (Hughes & Salathé, 2015), 
+Kaggle copy: https://www.kaggle.com/datasets/emmarex/plantdisease 
+- Wikipedia REST API: https://en.wikipedia.org/api/rest_v1/page/summary/<page 
+title> (e.g. Early blight, Late blight, Leaf mold). 

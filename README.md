@@ -59,16 +59,27 @@ LeafDoc/
 
 ## Project Setup
 
+**Step 0: Install git on PC**
+
+Open Windows Powershell and type the following command, to install git:
+
+```
+winget install --id Git.Git -e --source winget
+```
+
+Then close down Powershell, and re-open it.
+
+
 **Step 1: Clone from Github**
 
-Open Windows Powershell and type the following commands:
+Then, in Windows Powershell, type the following commands:
 
 ```
 git clone https://github.com/K250026MuhammadRohaan/LeafDoc-Tomato-Leaf-Disease-Identifier        
 
 cd LeafDoc-Tomato-Leaf-Disease-Identifier 
 ```
- 
+
 
 **Step 2: Setup Virtual environment (Python 3.12)**
 

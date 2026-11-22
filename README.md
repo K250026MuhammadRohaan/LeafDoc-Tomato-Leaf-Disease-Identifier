@@ -76,14 +76,12 @@ Then, in Windows Powershell, type the following commands:
 
 ```
 git clone https://github.com/K250026MuhammadRohaan/LeafDoc-Tomato-Leaf-Disease-Identifier        
-
-cd LeafDoc-Tomato-Leaf-Disease-Identifier 
 ```
 
 
 **Step 2: Setup Virtual environment (Python 3.12)**
 
-Next, open VS Code, and open the terminal, and type the follwing commands in:
+Next, goto the newly downloaded github folder, open VS Code there, and open the terminal, and type the follwing commands in:
 
 ```
 py -3.12 -m venv .venv           

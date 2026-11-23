@@ -68,8 +68,7 @@ class ImageProcessor:
     def extract_features(self, hsv_image):
         """Measure the leaf colours. Returns a dict {feature name: number}.
 
-        Everything is done with boolean masks (True/False arrays),
-        so there is no loop over the pixels.
+        Everything is done with boolean masks (True/False arrays).
         """
         # Slice the 3 channels (channel slicing)
         hue = hsv_image[:, :, 0]
@@ -105,7 +104,7 @@ class ImageProcessor:
 
     # ------------------------------------------------------------------
     def get_features(self, path):
-        """Shortcut: path of a photo -> dict of features (all steps in one)."""
+        """Calls all necessary functions on path, with one function call."""
         image = self.load_image(path)
         hsv_image = self.preprocess(image)
         return self.extract_features(hsv_image)

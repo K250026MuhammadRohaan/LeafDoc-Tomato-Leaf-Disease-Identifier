@@ -114,7 +114,7 @@ class DatasetManager:
         before = len(self.table)
 
         self.table = self.table.dropna()                          # drop rows with missing values
-        self.table = self.table.drop_duplicates(subset="file_path")   # same file twice? keep one
+        self.table = self.table.drop_duplicates(subset="file_path") 
         # keep only rows whose label is one of our 4 classes
         self.table = self.table[self.table["label"].isin(FOLDER_TO_LABEL.values())]
         # percentages must be between 0 and 100

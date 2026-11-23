@@ -48,7 +48,7 @@ class ChartMaker:
 
     # ------------------------------------------------------------------
     def _save(self, file_name):
-        """Private helper: save the current chart and close it."""
+        """Saves the current chart and closes it."""
         path = os.path.join(self.output_dir, file_name)
         plt.tight_layout()
         plt.savefig(path, dpi=120)
